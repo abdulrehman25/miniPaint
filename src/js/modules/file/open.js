@@ -196,7 +196,6 @@ class File_open_class {
 	 */
 	open_data_url() {
 		var _this = this;
-
 		var settings = {
 			title: 'Open data URL',
 			params: [

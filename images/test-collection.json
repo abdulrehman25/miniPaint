@@ -2,7 +2,7 @@
 	"info": {
 		"width": 1000,
 		"height": 750,
-		"about": "Image data with multi-layers. Can be opened using miniPaint - https://github.com/viliusle/miniPaint",
+		"about": "Image data with multi-layers. Can be opened using NBS-Paint",
 		"date": "2021-06-16",
 		"version": "4.7.1",
 		"layer_active": 1,
@@ -96,7 +96,7 @@
 					]
 				},
 				"stroke_size": 1,
-				"text": "MiniPaint test collection"
+				"text": "NBS-Paint test collection"
 			},
 			"status": null,
 			"color": "#323e6c",
