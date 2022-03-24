@@ -33,6 +33,9 @@ window.addEventListener('load', function (e) {
 	var File_open = new File_open_class();
 	var File_save = new File_save_class();
 	var Base_search = new Base_search_class();
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	const default_image = urlParams.get('default_file_path')
 
 	// Register singletons in app module
 	app.Actions = Actions;
@@ -50,7 +53,31 @@ window.addEventListener('load', function (e) {
 	window.State = Base_state;
 	window.FileOpen = File_open;
 	window.FileSave = File_save;
+	console.log(default_image)
+	if (default_image && typeof default_image.length !== 'undefined') {
+		let default_image_base64 = ''
+		console.log(default_image)
+		var base64_api = document.getElementById("base64_api").value;
+		base64_api += "?url="+default_image;
+			fetch(base64_api)
+			// Converting to JSON
+			.then(response => response.json())
+			// Displaying results to console
+			.then(json => {
+				console.log("JSON: "+json)
+				if (json){
+					console.log("ONly Data: "+json.data)
+					default_image_base64 = json.data;
+					const data_image = 'data:image/png;base64,'+default_image_base64;
+					console.log(default_image_base64,data_image)
+					if (default_image_base64 !== '')
+						FileOpen.file_open_data_url_handler(data_image);
+				}
+			})
+			.catch(err => {
 
+			});
+	}
 	// Render all
 	GUI.init();
 	Layers.init();
