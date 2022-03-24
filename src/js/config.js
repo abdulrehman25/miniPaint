@@ -152,7 +152,19 @@ config.TOOLS = [
 		name: 'arrow',
 		visible: false,
 		attributes: {
-			size: 4,
+			size: 25,
+
+		},
+	},
+	{
+		name: 'arrow_empty_right',
+		visible: false,
+		attributes: {
+			border_size: 4,
+			border: true,
+			fill: false,
+			border_color: '#555555',
+			fill_color: '#aaaaaa',
 		},
 	},
 	{
