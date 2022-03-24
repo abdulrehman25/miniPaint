@@ -44,7 +44,7 @@ const menuDefinition = [
 				]
 			},
 			{
-				name: 'Search Images',
+				name: 'Search Live Images',
 				ellipsis: true,
 				target: 'file/open.search'
 			},
@@ -743,18 +743,18 @@ const menuDefinition = [
 				ellipsis: true,
 				target: 'help/shortcuts.shortcuts'
 			},
-			{
-				name: 'Report Issues',
-				href: 'https://github.com/viliusle/miniPaint/issues'
-			},
-			{
-				divider: true
-			},
-			{
-				name: 'About',
-				ellipsis: true,
-				target: 'help/about.about'
-			}
+			// {
+			// 	name: 'Report Issues',
+			// 	href: 'https://github.com/viliusle/miniPaint/issues'
+			// },
+			// {
+			// 	divider: true
+			// },
+			// {
+			// 	name: 'About',
+			// 	ellipsis: true,
+			// 	target: 'help/about.about'
+			// }
 		]
 	}
 ];
