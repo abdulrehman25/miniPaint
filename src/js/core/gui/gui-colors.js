@@ -10,9 +10,14 @@ const Helper = new Helper_class();
 
 const sidebarTemplate = `
 	<div class="ui_flex_group justify_content_space_between stacked">
+	<style>
+		.d-none{
+		display: none!important;
+		}
+</style>
 		<div id="selected_color_sample" class="ui_color_sample" title="Current Color Preview"></div>
 		<div class="ui_button_group">
-			<button id="toggle_color_picker_section_button" aria-pressed="true" class="ui_icon_button" title="Toggle Color Picker">
+			<button id="toggle_color_picker_section_button" aria-pressed="true" class="ui_icon_button d-none" title="Toggle Color Picker">
 				<span class="sr_only">Toggle Color Picker</span>
 				<svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 					<rect width="24" height="24" opacity="0" />
@@ -23,7 +28,7 @@ const sidebarTemplate = `
 					<path d="M6.16 11.26a1.5 1.5 0 1 0 2.08.4 1.49 1.49 0 0 0-2.08-.4z" />
 				</svg>
 			</button>
-			<button id="toggle_color_channels_section_button" aria-pressed="true" class="ui_icon_button" title="Toggle Color Channels">
+			<button id="toggle_color_channels_section_button" aria-pressed="true" class="ui_icon_button d-none" title="Toggle Color Channels">
 				<span class="sr_only">Toggle Color Channels</span>
 				<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 					<path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
@@ -44,7 +49,7 @@ const sidebarTemplate = `
 	<div id="color_section_swatches" class="block_section">
 		<div id="color_swatches"></div>
 	</div>
-	<div id="color_section_picker" class="block_section">
+	<div id="color_section_picker" class="block_section d-none">
 		<input id="color_picker_gradient" type="color" aria-label="Color Selection">
 		<div class="ui_input_group stacked">
 			<label id="color_hex_label" title="Hex" class="label_width_small trn">Hex</label>
