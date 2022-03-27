@@ -1,3 +1,5 @@
+import config from "../../config";
+
 (function ($) {
 
 	const template = `
@@ -56,11 +58,24 @@
 
 	const set_selected_hex = ($el, hex) => {
 		const { selectedIndex, swatches } = $el.data();
-		if (/^\#[0-9A-F]{6}$/gi.test(hex)) {
-			const swatch = swatches[selectedIndex];
-			$(swatch)
-				.data('hex', hex)
-				.css('background-color', hex);
+		console.log("Selected: "+selectedIndex)
+		if (config.COLORS_SWATCH_CUSTOM) {
+			var colors = config.COLORS_SWATCH;
+			var color = colors[selectedIndex] ?? '#ffffff';
+			if (/^\#[0-9A-F]{6}$/gi.test(hex)) {
+				const swatch = swatches[selectedIndex];
+				$(swatch)
+					.data('hex', color)
+					.css('background-color', color);
+			}
+		}
+		else{
+			if (/^\#[0-9A-F]{6}$/gi.test(hex)) {
+				const swatch = swatches[selectedIndex];
+				$(swatch)
+					.data('hex', hex)
+					.css('background-color', hex);
+			}
 		}
 	};
 
@@ -82,6 +97,9 @@
 	}
 
 	$.fn.uiSwatches = function(behavior, ...args) {
+		var colors = config.COLORS_SWATCH;
+		console.log("Colors: "+colors[0])
+		console.log("Args: "+typeof args)
 		let returnValues = [];
 		for (let i = 0; i < this.length; i++) {
 			let el = this[i];

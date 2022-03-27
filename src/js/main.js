@@ -46,7 +46,8 @@ window.addEventListener('load', function (e) {
 	app.Layers = Layers;
 	app.State = Base_state;
 	app.Tools = Base_tools;
-
+	config.COLORS_SWATCH_CUSTOM = 1; // 1 means enabled 0 means disabled
+	config.COLORS_SWATCH = ['#0080F0','#CDCDCD','#31FFFF','#FF00CE'];
 	// Register as global for quick or external access
 	window.Layers = Layers;
 	window.AppConfig = config;
@@ -81,4 +82,9 @@ window.addEventListener('load', function (e) {
 	// Render all
 	GUI.init();
 	Layers.init();
+	var divs = document.querySelectorAll('.swatch');
+
+	for (let i = 0; i < divs.length; ++i) {
+		divs[i].click();
+	};
 }, false);
