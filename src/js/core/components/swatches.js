@@ -98,8 +98,8 @@ import config from "../../config";
 
 	$.fn.uiSwatches = function(behavior, ...args) {
 		var colors = config.COLORS_SWATCH;
-		console.log("Colors: "+colors[0])
-		console.log("Args: "+typeof args)
+		// console.log("Colors: "+colors[0])
+		// console.log("Args: "+typeof args)
 		let returnValues = [];
 		for (let i = 0; i < this.length; i++) {
 			let el = this[i];

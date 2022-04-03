@@ -77,7 +77,7 @@ class File_save_class {
 			}
 		}
 
-		this.save_general(types, 'Save as');
+		this.save_general(types, 'Collecting Data Please Wait');
 
 	}
 
@@ -128,21 +128,18 @@ class File_save_class {
 		}
 
 		var save_layers_types = [
-			'All',
-			'Selected',
-			'Separated',
-			'Separated (original types)',
+			'All'
 		];
-
 		var settings = {
 			title: title,
 			params: [
-				{name: "name", title: "File name:", value: file_name},
+				{name: "name", title: "Saving for Project IMO Number:", value: file_name},
 				{name: "type", title: "Save as type:", values: save_types, value: save_default},
 				{name: "quality", title: "Quality:", value: 90, range: [1, 100]},
 				{title: "File size:", html: '<span id="file_size">-</span>'},
 				{name: "calc_size", title: "Show file size:", value: calc_size_value},
 				{name: "layers", title: "Save layers:", values: save_layers_types},
+				{name: "saving", title: "Saving Data Please Proceed"},
 				{name: "delay", title: "Gif delay:", value: 400},
 			],
 			on_change: function (params, canvas_preview, w, h) {
@@ -171,7 +168,7 @@ class File_save_class {
 								}
 							}
 						}
-						
+
 						new app.Actions.Select_layer_action(config.layers[i].id, true).do();
 						_this.save_action(params, true);
 					}
@@ -578,10 +575,48 @@ class File_save_class {
 				fname = fname + ".json";
 
 			var data_json = this.export_as_json();
+			var save_json_api = document.getElementById("save_json_end_point").value;
+			var csrf_token = document.getElementById("csrf_token").value;
+			// POST request using fetch()
+			fetch(save_json_api, {
 
-			var blob = new Blob([data_json], {type: "text/plain"});
+				// Adding method type
+				method: "POST",
+
+				// Adding body or contents to send
+				body: JSON.stringify({
+					_token:csrf_token,
+					json_data: data_json
+				}),
+
+				// Adding headers to the request
+				headers: {
+					"Content-type": "application/json; charset=UTF-8"
+				}
+			})
+
+				// Converting to JSON
+				.then(response => response.json())
+				// Displaying results to console
+				.then(json =>
+					function (json){
+						var settings_success = {
+							title: "Data Saved Successfully Please Navigate Your Self",
+						}
+						var settings_fail = {
+							title: "Data Is Not Saved, Please Contact Admin",
+						}
+						if (json)
+							this.POP.show(settings_success);
+						else
+							this.POP.show(settings_fail);
+					}
+				);
+			// console.log(data_json)
+			// var blob = new Blob([data_json], {type: "text/plain"});
 			//var data = window.URL.createObjectURL(blob); //html5
-			filesaver.saveAs(blob, fname);
+			// console.log(blob)
+			// filesaver.saveAs(blob, fname);
 		}
 		else if (type == 'GIF') {
 			//gif
@@ -661,8 +696,7 @@ class File_save_class {
 		export_data.info = {
 			width: config.WIDTH,
 			height: config.HEIGHT,
-			about: 'Image data with multi-layers. Can be opened using miniPaint - '
-				+ 'https://github.com/viliusle/miniPaint',
+			about: 'Image data with multi-layers. Can be opened using NBS-Paint',
 			date: today,
 			version: VERSION,
 			layer_active: config.layer.id,
